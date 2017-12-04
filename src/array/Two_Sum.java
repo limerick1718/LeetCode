@@ -17,22 +17,21 @@ import java.util.Map;
 public class Two_Sum {
 
 	public int[] twoSum(int[] numbers, int target) {
-		//the result
 		int[] result = new int[2];
-		//key: value; value: position
-	    Map<Integer, Integer> map = new HashMap<Integer, Integer>();
-	    //loop the numbers
-	    for (int i = 0; i < numbers.length; i++) {
-	    	//if map contains the residue -- find the answer
-	        if (map.containsKey(target - numbers[i])) {
-	            result[1] = i;
-	            result[0] = map.get(target - numbers[i]);
-	            return result;
-	        }
-	        //still does not find the res pair, go ahead
-	        map.put(numbers[i], i);
-	    }
-	    return result;
+		// initialize the array with 2 size
+		HashMap<Integer, Integer> hashMap = new HashMap<>();
+		//a hashMap to store the numbers visited
+		for (int i = 0; i < numbers.length; i ++) {
+			//if the residue of temporary visit number in map, we find the result
+			if (hashMap.containsKey(target - numbers[i])) {
+				result[1] = i;
+				result[0] = hashMap.get(target - numbers[i]);
+				break;
+			}
+			//else, put it in map
+			hashMap.put(numbers[i], i);
+		}
+		return result;
 	}
 
 	public static void main(String[] args) {
